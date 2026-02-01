@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Jamila 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    background: paleturquoise;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+  }
+
+  .memoji {
+    font-size: 90px;
+  }
+
+  h1 {
+    color: #ff3b6f;
+    min-height: 35px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .btn {
+  padding: 6px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  position: absolute;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* YES button */
+.yes-btn {
+  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+  color: white;
+  left: 50%;
+  transform: translateX(-140%);
+  animation: pulse 2s infinite;
+}
+
+.yes-btn:hover {
+  transform: translateX(-140%) scale(1.08);
+  box-shadow: 0 12px 25px rgba(255, 77, 109, 0.6);
+}
+
+.yes-btn:active {
+  transform: translateX(-140%) scale(0.95);
+}
+
+/* NO button */
+.no-btn {
+  background: #f2f2f2;
+  color: #666;
+  left: 50%;
+  transform: translateX(30%);
+}
+
+.no-btn:hover {
+  background: #e6e6e6;
+  transform: translateX(30%) scale(1.05) rotate(-2deg);
+}
+
+/* Cute pulse for YES */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(255, 77, 109, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 109, 0);
+  }
+}
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    from {
+      transform: translateY(100vh) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-10vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+  .memoji img {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+</style>
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+<div class="memoji">
+  <img src="https://tenor.com/view/rose-in-mouth-flirty-handsome-thut-momias-gif-611452744042072113.gif" alt="Cute rose in mouth" style="width:220px; border-radius:15px;">
+</div>
+  <h1 id="typewriter"></h1>
+  <p>Will you be my Valentine? 💘</p>
+
+  <div class="buttons">
+    <button id="yes" class="btn yes-btn" onclick="sayYes()">Yes 💖</button>
+<button id="no" class="btn no-btn">No 😒</button>
+  </div>
+</div>
+
+<script>
+  /* Typewriter effect */
+  const text = "Jamila 💕";
+  let index = 0;
+  function typeWriter() {
+    if (index < text.length) {
+      document.getElementById("typewriter").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeWriter, 120);
+    }
+  }
+  typeWriter();
+
+  /* No button escape + shake */
+  const noBtn = document.getElementById("no");
+
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*20-10}deg)`;
+  });
+
+  function sayYes() {
+    window.location.href = "yes.html";
+  }
+
+  /* Floating hearts generator */
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 300);
+</script>
+
+</body>
+</html>
